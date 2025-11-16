@@ -1,0 +1,49 @@
+# Complete Inference Configuration
+
+# Inherit from base config
+_BASE_: "base.yaml"
+
+# Inference specific settings
+EXPERIMENT:
+  NAME: "inference_pipeline"
+  TAGS: ["inference", "pipeline", "production"]
+  NOTES: "Complete inference pipeline for ECG digitization"
+
+# Pipeline configuration
+PIPELINE:
+  STAGES: ["stage0", "stage1", "stage2"]
+  SAVE_INTERMEDIATE: True
+  PARALLEL_PROCESSING: False
+  BATCH_PROCESSING: True
+
+# Model weights
+PATHS:
+  STAGE_WEIGHTS:
+    STAGE0: "stage0-last.checkpoint.pth"
+    STAGE1: "stage1-last.checkpoint.pth"
+    STAGE2: "stage2-00005810.checkpoint.pth"
+
+# Inference settings
+INFERENCE:
+  BATCH_SIZE: 1
+  DEVICE: "cuda"
+  MIXED_PRECISION: True
+  ENSEMBLE: False
+  TTA: False
+
+  OUTPUT:
+    FORMAT: "csv"
+    TIME_SERIES: True
+    INTERMEDIATE_IMAGES: False
+    CONFIDENCE_SCORES: True
+
+# Quality control
+QUALITY_CONTROL:
+  ENABLED: True
+  AUTO_REJECT: False
+  CONTINUE_ON_ERROR: True
+
+  THRESHOLDS:
+    MIN_OVERALL_CONFIDENCE: 0.5
+    MIN_SIGNAL_QUALITY: 0.3
+    MAX_FAILURE_RATE: 0.1

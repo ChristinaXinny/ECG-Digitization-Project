@@ -1,0 +1,50 @@
+# Stage 1 Configuration - Image Rectification and Grid Detection
+
+# Inherit from base config
+_BASE_: "base.yaml"
+
+# Stage 1 specific settings
+EXPERIMENT:
+  NAME: "stage1_rectification"
+  TAGS: ["stage1", "rectification", "grid"]
+  NOTES: "Stage 1: ECG image rectification and grid alignment"
+
+# Model configuration
+MODEL:
+  NAME: "Stage1Net"
+  STAGE: "stage1"
+  INPUT_SIZE: [1152, 1440]
+  OUTPUT_SIZE: [1152, 1440]
+
+  HEADS:
+    GRIDPOINT_HEAD:
+      TYPE: "detection"
+      ACTIVATION: "sigmoid"
+
+    GRIDLINE_HEAD:
+      TYPE: "segmentation"
+      H_LINES: 44 + 1
+      V_LINES: 57 + 1
+      ACTIVATION: "softmax"
+
+    MARKER_HEAD:
+      TYPE: "segmentation"
+      NUM_CLASSES: 14
+      ACTIVATION: "softmax"
+
+TRAIN:
+  BATCH_SIZE: 6
+  EPOCHS: 60
+  LEARNING_RATE: 1.5e-4
+
+  LOSS_WEIGHTS:
+    GRIDPOINT_LOSS: 2.0
+    GRIDLINE_H_LOSS: 1.0
+    GRIDLINE_V_LOSS: 1.0
+    MARKER_LOSS: 0.5
+
+INFERENCE:
+  STAGE1:
+    GRIDPOINT_THRESHOLD: 0.5
+    GRIDLINE_THRESHOLD: 0.3
+    CLUSTER_DISTANCE: 20

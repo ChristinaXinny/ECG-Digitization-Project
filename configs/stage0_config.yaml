@@ -1,0 +1,43 @@
+# Stage 0 Configuration - Image Normalization and Keypoint Detection
+
+# Inherit from base config
+_BASE_: "base.yaml"
+
+# Stage 0 specific settings
+EXPERIMENT:
+  NAME: "stage0_normalization"
+  TAGS: ["stage0", "normalization", "keypoint"]
+  NOTES: "Stage 0: ECG image normalization and keypoint detection"
+
+# Model configuration
+MODEL:
+  NAME: "Stage0Net"
+  STAGE: "stage0"
+  INPUT_SIZE: [1152, 1440]
+  OUTPUT_SIZE: [1152, 1440]
+
+  HEADS:
+    MARKER_HEAD:
+      TYPE: "segmentation"
+      NUM_CLASSES: 14
+      ACTIVATION: "softmax"
+
+    ORIENTATION_HEAD:
+      TYPE: "classification"
+      NUM_CLASSES: 8
+      ACTIVATION: "softmax"
+      DROPOUT: 0.1
+
+TRAIN:
+  BATCH_SIZE: 8
+  EPOCHS: 50
+  LEARNING_RATE: 2e-4
+
+  LOSS_WEIGHTS:
+    MARKER_LOSS: 1.0
+    ORIENTATION_LOSS: 0.5
+
+INFERENCE:
+  STAGE0:
+    CONFIDENCE_THRESHOLD: 0.6
+    ORIENTATION_THRESHOLD: 0.8

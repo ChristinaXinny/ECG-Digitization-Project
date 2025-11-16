@@ -1,0 +1,56 @@
+# Stage 2 Configuration - Signal Digitization
+
+# Inherit from base config
+_BASE_: "base.yaml"
+
+# Stage 2 specific settings
+EXPERIMENT:
+  NAME: "stage2_digitization"
+  TAGS: ["stage2", "digitization", "signal"]
+  NOTES: "Stage 2: ECG signal digitization and time series extraction"
+
+# Model configuration
+MODEL:
+  NAME: "Stage2Net"
+  STAGE: "stage2"
+  INPUT_SIZE: [1696, 2176]
+  OUTPUT_SIZE: [1696, 2176]
+
+  HEADS:
+    PIXEL_HEAD:
+      TYPE: "segmentation"
+      NUM_CLASSES: 14
+      ACTIVATION: "softmax"
+
+    REGRESSION_HEAD:
+      TYPE: "regression"
+      NUM_OUTPUTS: 4
+      ACTIVATION: "none"
+
+  COORDINATE_ENCODING:
+    ENABLED: True
+    COORD_RANGE: [-2, 2]
+
+TRAIN:
+  BATCH_SIZE: 4
+  EPOCHS: 80
+  LEARNING_RATE: 1e-4
+
+  LOSS_WEIGHTS:
+    PIXEL_LOSS: 1.0
+    REGRESSION_LOSS: 2.0
+    SMOOTHNESS_LOSS: 0.1
+
+DATA:
+  IMG_SIZE: [1696, 2176]
+  CROP_SIZE: [1696, 2176]
+
+  STAGE2_SPECIFIC:
+    TIME_WINDOW: [118, 2080]
+    ZERO_MV: [703.5, 987.5, 1271.5, 1531.5]
+    MV_TO_PIXEL: 79.0
+
+INFERENCE:
+  STAGE2:
+    PIXEL_THRESHOLD: 0.4
+    CONFIDENCE_THRESHOLD: 0.5
