@@ -1,0 +1,2 @@
+*.pth filter=lfs diff=lfs merge=lfs -text
+outputs/stage0_checkpoints/*.pth filter=lfs diff=lfs merge=lfs -text
