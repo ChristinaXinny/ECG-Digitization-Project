@@ -7,7 +7,7 @@ import time
 from torch.utils.data import DataLoader
 
 # Add current directory to path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def print_with_time(message):
     """Print message with timestamp."""

@@ -9,7 +9,7 @@ from torch.utils.data import DataLoader
 import time
 
 # Add current directory to path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def print_with_time(message):
     print(f"[{time.strftime('%H:%M:%S')}] {message}")

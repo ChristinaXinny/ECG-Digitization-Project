@@ -14,54 +14,81 @@ This project converts ECG images through a three-stage deep learning pipeline:
 
 ```
 ECG-Digitization-Project/
-├── configs/                          # Configuration files
-│   ├── base.yaml                     # Base configuration
-│   ├── stage0_config.yaml            # Stage0 model configuration
-│   ├── stage1_config.yaml            # Stage1 model configuration
-│   ├── stage2_config.yaml            # Stage2 model configuration
-│   └── inference_config.yaml         # Inference configuration
-├── data/                             # Data handling
-│   ├── dataset.py                    # Dataset classes
-│   ├── preprocessing.py              # Data preprocessing
-│   └── transforms.py                 # Data augmentation
-├── models/                           # Model definitions
-│   ├── base_model.py                 # Base model class
-│   ├── stage0_model.py               # Stage0 model
-│   ├── stage1_model.py               # Stage1 model
-│   ├── stage2_model.py               # Stage2 model
-│   └── heads/                        # Model heads
-│       ├── detection_head.py         # Detection heads
-│       ├── regression_head.py        # Regression heads
-│       └── segmentation_head.py      # Segmentation heads
-├── engines/                          # Training/inference engines
-│   ├── base_trainer.py               # Base trainer
-│   ├── stage_trainer.py              # Stage-specific trainers
-│   ├── inference.py                  # Inference engine
-│   └── validation.py                 # Validation engine
-├── utils/                            # Utility functions
-│   ├── logger.py                     # Logging utilities
-│   ├── metrics.py                    # Evaluation metrics
-│   ├── visualization.py              # Visualization tools
-│   ├── config_loader.py              # Configuration loader
-│   └── checkpoint.py                 # Model checkpoint utilities
-├── scripts/                          # Running scripts
-│   ├── train_all.sh                  # Complete training script
-│   ├── train_stage0.sh               # Stage0 training
-│   ├── train_stage1.sh               # Stage1 training
-│   ├── train_stage2.sh               # Stage2 training
-│   ├── inference.sh                  # Inference script
-│   └── setup_environment.sh          # Environment setup
-├── tests/                            # Unit tests
-├── outputs/                          # Output directory
-│   ├── checkpoints/                  # Model weights
-│   ├── logs/                         # Training logs
-│   ├── predictions/                  # Prediction results
-│   └── visualizations/               # Visualization results
-├── docs/                             # Documentation
-├── main.py                          # Main entry point
-├── train.py                         # Training entry
-├── inference.py                     # Inference entry
-└── requirements.txt                 # Dependencies
+├── 📄 Quick Access Scripts
+│   ├── train.py                      # Quick training access
+│   ├── test.py                       # Quick testing access
+│   ├── inference.py                  # Quick inference access
+│   └── ablation.py                   # Quick ablation studies access
+│
+├── 📁 Core Directories
+│   ├── configs/                      # Configuration files
+│   ├── data/                         # Data handling (dataset, preprocessing)
+│   ├── models/                       # Model definitions and heads
+│   ├── engines/                      # Training/inference engines
+│   ├── utils/                        # Utility functions (metrics, logging)
+│   └── ablation_studies/             # Ablation study framework
+│
+├── 📁 Scripts & Tools
+│   ├── scripts/                      # All training and utility scripts
+│   │   ├── train_stage0.py           # Main training script
+│   │   ├── load_model.py             # Model loading and inference
+│   │   ├── main.py                   # Entry point script
+│   │   └── *.py                      # Additional training scripts
+│   └── tests/                        # Comprehensive test suite
+│       ├── run_simple_tests.py       # Quick validation tests
+│       ├── basic_test.py             # Basic functionality tests
+│       ├── test_*.py                 # Specialized test files
+│       └── README.md                 # Test documentation
+│
+├── 📁 Documentation
+│   ├── README.md                     # Main documentation
+│   ├── PROJECT_SUMMARY.md            # Complete project overview
+│   ├── ABLATION_GUIDE.md             # Ablation study guide
+│   └── docs/                         # Additional documentation
+│       ├── TRAINING_GUIDE.md         # Training guide
+│       ├── QUICK_START.md            # Quick start guide
+│       └── PROJECT_STATUS.md         # Project status
+│
+└── 📁 Output & Build
+    ├── outputs/                      # Training outputs and checkpoints
+    ├── requirements.txt              # Python dependencies
+    ├── Makefile                      # Build automation
+    └── setup.py                      # Package setup
+```
+
+## 🚀 Quick Start
+
+### 1. Quick Validation
+```bash
+# Run quick tests to validate installation
+python test.py
+
+# Or run comprehensive tests
+python tests/run_simple_tests.py
+```
+
+### 2. Training
+```bash
+# Start training from project root
+python train.py
+
+# Or specify training script directly
+python scripts/train_stage0.py
+```
+
+### 3. Inference
+```bash
+# Run inference with trained model
+python inference.py --checkpoint path/to/model.pth --image path/to/ecg.jpg
+```
+
+### 4. Ablation Studies
+```bash
+# Run all ablation studies
+python ablation.py
+
+# Or run specific studies
+python ablation_studies/run_ablation_studies.py --studies backbone loss
 ```
 
 ## 🛠️ Installation

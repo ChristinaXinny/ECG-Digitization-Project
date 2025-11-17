@@ -10,7 +10,7 @@ from PIL import Image
 import cv2
 
 # Add project directory to path
-project_root = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if project_root not in os.sys.path:
     os.sys.path.insert(0, project_root)
 
