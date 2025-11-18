@@ -76,13 +76,7 @@ python train.py
 python scripts/train_stage0.py
 ```
 
-### 3. Inference
-```bash
-# Run inference with trained model
-python inference.py --checkpoint path/to/model.pth --image path/to/ecg.jpg
-```
-
-### 4. Ablation Studies
+### 3. Ablation Studies
 ```bash
 # Run all ablation studies
 python ablation.py
@@ -107,29 +101,11 @@ python ablation_studies/run_ablation_studies.py --studies backbone loss
    cd ECG-Digitization-Project
    ```
 
-2. **Create conda environment**:
-   ```bash
-   conda create -n ecg-digit python=3.9
-   conda activate ecg-digit
-   ```
-
-3. **Install dependencies**:
+2. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Setup environment**:
-   ```bash
-   python main.py setup --config configs/base.yaml
-   ```
-
-### Environment Setup Script
-
-```bash
-# Run complete setup
-chmod +x scripts/setup_environment.sh
-./scripts/setup_environment.sh
-```
 
 ## 🚀 Quick Start
 
@@ -140,77 +116,12 @@ chmod +x scripts/setup_environment.sh
 python main.py train --config configs/base.yaml --mode all
 ```
 
-**Train specific stage**:
-```bash
-python main.py train --config configs/stage0_config.yaml --mode stage0
-python main.py train --config configs/stage1_config.yaml --mode stage1
-python main.py train --config configs/stage2_config.yaml --mode stage2
-```
-
-**Resume training**:
-```bash
-python main.py train --config configs/stage0_config.yaml --resume outputs/checkpoints/stage0/latest.pth
-```
-
-### 2. Inference
-
-**Single image inference**:
-```bash
-python main.py inference --config configs/inference_config.yaml --input path/to/ecg.png
-```
-
-**Batch inference**:
-```bash
-python main.py inference --config configs/inference_config.yaml --input /path/to/images/ --output /path/to/results/
-```
-
-**Complete pipeline**:
-```bash
-python main.py inference --config configs/inference_config.yaml --mode pipeline --input /path/to/images/
-```
-
-### 3. Evaluation
+### 2. Evaluation
 
 **Evaluate model**:
 ```bash
 python main.py evaluate --config configs/inference_config.yaml --model outputs/checkpoints/stage0/best.pth
 ```
-
-## 📊 Configuration
-
-The project uses YAML configuration files for easy customization:
-
-### Base Configuration (`configs/base.yaml`)
-```yaml
-# Project settings
-PROJECT_NAME: "ECG Digitization"
-SEED: 42
-
-# Device settings
-DEVICE:
-  DEVICE: "cuda"
-  GPU_IDS: [0]
-  MIXED_PRECISION: True
-
-# Model settings
-MODEL:
-  BACKBONE:
-    NAME: "resnet18d"
-    PRETRAINED: True
-
-# Training settings
-TRAIN:
-  BATCH_SIZE: 4
-  EPOCHS: 100
-  LEARNING_RATE: 1e-4
-```
-
-### Stage-Specific Configuration
-Each stage has its own configuration file that inherits from base.yaml:
-- `stage0_config.yaml`: Image normalization settings
-- `stage1_config.yaml`: Grid detection settings
-- `stage2_config.yaml`: Signal digitization settings
-- `inference_config.yaml`: Complete pipeline inference settings
 
 ## 📈 Model Architecture
 
@@ -244,28 +155,6 @@ data/
 └── test/
 ```
 
-### Training Scripts
-
-**Complete training**:
-```bash
-chmod +x scripts/train_all.sh
-./scripts/train_all.sh
-```
-
-**Individual stage training**:
-```bash
-chmod +x scripts/train_stage0.sh
-./scripts/train_stage0.sh
-```
-
-### Monitoring Training
-
-Training progress is logged to:
-- Console output
-- Log files (`outputs/logs/`)
-- TensorBoard (if enabled)
-- Weights & Biases (if configured)
-
 ## 🔍 Inference Pipeline
 
 ### Input Requirements
@@ -284,13 +173,6 @@ sample_001_0_II,-0.234
 ...
 ```
 
-### Processing Modes
-
-- **Single stage**: Process individual stage
-- **Complete pipeline**: All three stages
-- **Batch processing**: Multiple images
-- **Real-time**: Single image with minimal latency
-
 ## 🧪 Testing
 
 ### Run Unit Tests
@@ -302,61 +184,6 @@ python -m pytest tests/ -v
 ```bash
 python -m pytest tests/test_models.py -v
 python -m pytest tests/test_data.py -v
-```
-
-### Test Coverage
-```bash
-python -m pytest tests/ --cov=src --cov-report=html
-```
-
-## 📝 Documentation
-
-- **[Architecture Guide](docs/architecture.md)**: Detailed system architecture
-- **[API Reference](docs/api_reference.md)**: Complete API documentation
-- **[Troubleshooting](docs/troubleshooting.md)**: Common issues and solutions
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -am 'Add feature'`
-4. Push branch: `git push origin feature-name`
-5. Submit a pull request
-
-### Code Style
-```bash
-# Format code
-black src/ tests/
-isort src/ tests/
-
-# Type checking
-mypy src/
-
-# Linting
-flake8 src/ tests/
-```
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **CUDA out of memory**:
-   - Reduce batch size in config
-   - Use CPU inference
-   - Enable gradient checkpointing
-
-2. **Model weights not found**:
-   - Run setup script: `python main.py setup`
-   - Download weights manually
-
-3. **Poor quality results**:
-   - Check input image quality
-   - Verify correct configuration
-   - Ensure proper model weights
-
-### Debug Mode
-```bash
-python main.py train --config configs/base.yaml --debug --verbose
 ```
 
 ## 📊 Performance
@@ -371,15 +198,6 @@ python main.py train --config configs/base.yaml --debug --verbose
 - Enable gradient accumulation
 - Use appropriate batch sizes
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Original Kaggle competition implementation
-- Medical imaging research community
-- PyTorch and deep learning ecosystem
 
 ---
 
