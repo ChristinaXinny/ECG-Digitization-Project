@@ -59,11 +59,11 @@ def test_data_loading():
         except Exception as e:
             print(f"⚠ Submit mode failed (expected if no test data): {e}")
 
-        print("\n✅ All data loading tests passed!")
+        print("\n[OK] All data loading tests passed!")
         return True
 
     except Exception as e:
-        print(f"\n❌ Data loading test failed: {e}")
+        print(f"\n Data loading test failed: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -79,7 +79,7 @@ def test_file_paths():
     if os.path.exists(base_dir):
         print(f"✓ Data directory exists: {os.path.abspath(base_dir)}")
     else:
-        print(f"❌ Data directory not found: {os.path.abspath(base_dir)}")
+        print(f" Data directory not found: {os.path.abspath(base_dir)}")
         return False
 
     # Check training directory
@@ -98,7 +98,7 @@ def test_file_paths():
             images = [f for f in os.listdir(first_train_dir) if f.endswith('.png')]
             print(f"  First training dir {train_ids[0]} has {len(images)} images")
     else:
-        print(f"❌ Training directory not found: {train_dir}")
+        print(f" Training directory not found: {train_dir}")
 
     # Check test directory
     test_dir = os.path.join(base_dir, "test")

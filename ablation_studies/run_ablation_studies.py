@@ -58,7 +58,7 @@ to evaluate the contribution of different components in the ECG digitization pip
 
 ## Key Findings
 
-### 📊 Performance Impact Analysis
+###  Performance Impact Analysis
 
 | Component Category | Best Performance | Most Efficient | Fastest Training |
 |-------------------|------------------|-----------------|------------------|
@@ -77,7 +77,7 @@ The ablation studies provide quantitative evidence for the necessity of each com
 4. **Appropriate Data Augmentation**: Crucial for generalization and robustness
 5. **Loss Function Balance**: Proper weighting between tasks is critical
 
-### 📈 Recommendations
+###  Recommendations
 
 Based on the ablation study results:
 
@@ -143,12 +143,12 @@ def run_single_study(study_name, study_class):
         end_time = time.time()
         duration = end_time - start_time
 
-        print(f"\n✅ {study_name} study completed successfully!")
+        print(f"\n[OK] {study_name} study completed successfully!")
         print(f"   Duration: {duration/60:.1f} minutes")
         print(f"   Results saved to: {ablation.output_dir}")
 
     except Exception as e:
-        print(f"\n❌ {study_name} study failed: {e}")
+        print(f"\n {study_name} study failed: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -175,11 +175,11 @@ def run_all_studies(selected_studies=None):
         studies_to_run = [s for s in selected_studies if s in available_studies]
         missing = [s for s in selected_studies if s not in available_studies]
         if missing:
-            print(f"⚠️  Unknown studies: {missing}")
+            print(f"  Unknown studies: {missing}")
             print(f"Available studies: {list(available_studies.keys())}")
 
     if not studies_to_run:
-        print("❌ No studies selected for execution")
+        print(" No studies selected for execution")
         return
 
     print(f"Studies to run: {', '.join([available_studies[s][0] for s in studies_to_run])}")
@@ -212,14 +212,14 @@ def run_all_studies(selected_studies=None):
     print(f"Studies Completed: {len(successful_studies)}/{len(studies_to_run)}")
 
     if successful_studies:
-        print(f"✅ Successful: {', '.join(successful_studies)}")
+        print(f"[OK] Successful: {', '.join(successful_studies)}")
     if failed_studies:
-        print(f"❌ Failed: {', '.join(failed_studies)}")
+        print(f" Failed: {', '.join(failed_studies)}")
 
     # Create summary report
     create_results_summary()
 
-    print(f"\n📊 All results and visualizations saved to: ./ablation_studies/results/")
+    print(f"\n All results and visualizations saved to: ./ablation_studies/results/")
     print(f"📄 Summary report: ./ablation_studies/results/ablation_summary.md")
 
     return len(failed_studies) == 0
@@ -263,9 +263,9 @@ Examples:
     success = run_all_studies(args.studies)
 
     if success:
-        print("\n🎉 All ablation studies completed successfully!")
+        print("\n All ablation studies completed successfully!")
     else:
-        print("\n⚠️  Some studies failed. Check the logs above for details.")
+        print("\n  Some studies failed. Check the logs above for details.")
         return 1
 
     return 0

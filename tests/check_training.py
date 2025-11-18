@@ -18,17 +18,17 @@ def check_checkpoints(checkpoint_dir: str = "./outputs/stage0_checkpoints/"):
     print()
 
     if not os.path.exists(checkpoint_dir):
-        print(f"❌ Checkpoint directory not found: {checkpoint_dir}")
+        print(f" Checkpoint directory not found: {checkpoint_dir}")
         return
 
     # Find all checkpoint files
     checkpoint_files = glob.glob(os.path.join(checkpoint_dir, "*.pth"))
 
     if not checkpoint_files:
-        print("❌ No checkpoint files found")
+        print(" No checkpoint files found")
         return
 
-    print(f"📁 Found {len(checkpoint_files)} checkpoint files:")
+    print(f" Found {len(checkpoint_files)} checkpoint files:")
 
     best_checkpoint = None
     best_loss = float('inf')
@@ -46,7 +46,7 @@ def check_checkpoints(checkpoint_dir: str = "./outputs/stage0_checkpoints/"):
             epoch = checkpoint.get('epoch', 'Unknown')
             loss = checkpoint.get('loss', 'Unknown')
 
-            print(f"  📄 {filename}")
+            print(f"   {filename}")
             print(f"     Epoch: {epoch}")
             print(f"     Loss: {loss}")
             print(f"     Size: {file_size:.1f} MB")
@@ -64,24 +64,24 @@ def check_checkpoints(checkpoint_dir: str = "./outputs/stage0_checkpoints/"):
             print()
 
         except Exception as e:
-            print(f"  ❌ {filename} - Error loading: {e}")
+            print(f"   {filename} - Error loading: {e}")
             print()
 
     # Summary
     print("=== Summary ===")
     if best_checkpoint:
-        print(f"🏆 Best model: {os.path.basename(best_checkpoint)} (Loss: {best_loss:.6f})")
+        print(f" Best model: {os.path.basename(best_checkpoint)} (Loss: {best_loss:.6f})")
 
     if latest_checkpoint:
-        print(f"🔄 Latest checkpoint: {os.path.basename(latest_checkpoint)} (Epoch: {latest_epoch})")
+        print(f" Latest checkpoint: {os.path.basename(latest_checkpoint)} (Epoch: {latest_epoch})")
 
     # Check if training is complete
     if "stage0_final.pth" in checkpoint_files:
-        print("✅ Training completed (final model found)")
+        print(" Training completed (final model found)")
     elif "stage0_best.pth" in checkpoint_files:
-        print("⚡ Training in progress or completed (best model found)")
+        print(" Training in progress or completed (best model found)")
     else:
-        print("🚀 Training likely in progress")
+        print(" Training likely in progress")
 
 def list_available_models():
     """List all available model checkpoints."""
@@ -105,10 +105,10 @@ def list_available_models():
         checkpoint_files = glob.glob(os.path.join(stage_path, "*.pth"))
 
         if checkpoint_files:
-            print(f"\n📂 {stage_dir}/")
+            print(f"\n {stage_dir}/")
             for checkpoint_file in sorted(checkpoint_files):
                 filename = os.path.basename(checkpoint_file)
-                print(f"   📄 {filename}")
+                print(f"    {filename}")
 
 def test_checkpoint(checkpoint_path: str):
     """
@@ -120,14 +120,14 @@ def test_checkpoint(checkpoint_path: str):
     print(f"\n=== Testing Checkpoint: {checkpoint_path} ===")
 
     if not os.path.exists(checkpoint_path):
-        print(f"❌ File not found: {checkpoint_path}")
+        print(f" File not found: {checkpoint_path}")
         return
 
     try:
         # Load checkpoint
         checkpoint = torch.load(checkpoint_path, map_location='cpu')
 
-        print("✅ Checkpoint loaded successfully")
+        print(" Checkpoint loaded successfully")
         print(f"   Epoch: {checkpoint.get('epoch', 'Unknown')}")
         print(f"   Loss: {checkpoint.get('loss', 'Unknown')}")
 
@@ -136,9 +136,9 @@ def test_checkpoint(checkpoint_path: str):
         missing_keys = [key for key in required_keys if key not in checkpoint]
 
         if missing_keys:
-            print(f"⚠️  Missing keys: {missing_keys}")
+            print(f"  Missing keys: {missing_keys}")
         else:
-            print("✅ All required keys present")
+            print(" All required keys present")
 
         # Try to create model
         try:
@@ -150,14 +150,14 @@ def test_checkpoint(checkpoint_path: str):
             model = Stage0Net(config)
             model.load_state_dict(checkpoint['model_state_dict'])
 
-            print("✅ Model architecture verified")
+            print(" Model architecture verified")
             print(f"   Model parameters: {sum(p.numel() for p in model.parameters()):,}")
 
         except Exception as e:
-            print(f"❌ Model loading failed: {e}")
+            print(f" Model loading failed: {e}")
 
     except Exception as e:
-        print(f"❌ Checkpoint loading failed: {e}")
+        print(f" Checkpoint loading failed: {e}")
 
 
 def main():

@@ -105,9 +105,9 @@ class ECGTestRunner:
 
         # Print summary
         if success:
-            print(f"✅ {test_name} - PASSED ({duration:.2f}s)")
+            print(f"[OK] {test_name} - PASSED ({duration:.2f}s)")
         else:
-            print(f"❌ {test_name} - FAILED ({duration:.2f}s)")
+            print(f" {test_name} - FAILED ({duration:.2f}s)")
             if self.verbose and error:
                 print(f"Error: {error}")
 
@@ -115,7 +115,7 @@ class ECGTestRunner:
 
     def run_all_tests(self, skip_slow=False):
         """Run all tests with categorization."""
-        print("🚀 Starting ECG Digitization Test Suite")
+        print(" Starting ECG Digitization Test Suite")
         print(f"Verbose: {self.verbose}")
         print(f"Skip slow tests: {skip_slow}")
 
@@ -164,7 +164,7 @@ class ECGTestRunner:
             all_categories.append(("Slow Tests", slow_tests))
 
         for category_name, test_classes in all_categories:
-            print(f"\\n📋 {category_name}")
+            print(f"\\n {category_name}")
             print("-" * len(category_name))
 
             category_success = True
@@ -173,15 +173,15 @@ class ECGTestRunner:
                 category_success = category_success and success
 
             if category_success:
-                print(f"✅ {category_name} - ALL PASSED")
+                print(f"[OK] {category_name} - ALL PASSED")
             else:
-                print(f"❌ {category_name} - SOME FAILED")
+                print(f" {category_name} - SOME FAILED")
 
         return self._print_final_summary()
 
     def run_specific_tests(self, test_names):
         """Run specific test classes or methods."""
-        print(f"🎯 Running specific tests: {test_names}")
+        print(f" Running specific tests: {test_names}")
 
         # Available test classes mapping
         test_classes = {
@@ -220,14 +220,14 @@ class ECGTestRunner:
                 if class_name in test_classes:
                     success = self.run_test_class(test_classes[class_name], method_name)
                 else:
-                    print(f"❌ Unknown test class: {class_name}")
+                    print(f" Unknown test class: {class_name}")
                     success = False
             else:
                 # Test class specified
                 if test_name in test_classes:
                     success = self.run_test_class(test_classes[test_name])
                 else:
-                    print(f"❌ Unknown test: {test_name}")
+                    print(f" Unknown test: {test_name}")
                     success = False
 
             all_success = all_success and success
@@ -246,12 +246,12 @@ class ECGTestRunner:
         total_duration = sum(r.duration for r in self.results)
 
         print(f"Total tests: {total_tests}")
-        print(f"Passed: {passed_tests} ✅")
-        print(f"Failed: {failed_tests} ❌")
+        print(f"Passed: {passed_tests} [OK]")
+        print(f"Failed: {failed_tests} ")
         print(f"Total duration: {total_duration:.2f}s")
 
         if failed_tests > 0:
-            print(f"\\n❌ Failed tests:")
+            print(f"\\n Failed tests:")
             for result in self.results:
                 if not result.success:
                     print(f"  - {result.name}")
@@ -262,16 +262,16 @@ class ECGTestRunner:
         print(f"\\nSuccess rate: {success_rate:.1f}%")
 
         if failed_tests == 0:
-            print("\\n🎉 All tests passed!")
+            print("\\n All tests passed!")
         else:
-            print(f"\\n⚠️  {failed_tests} test(s) failed!")
+            print(f"\\n  {failed_tests} test(s) failed!")
 
         return failed_tests == 0
 
 
 def run_quick_tests():
     """Run a quick subset of tests for fast feedback."""
-    print("🏃‍♂️ Running quick tests...")
+    print(" Running quick tests...")
 
     runner = ECGTestRunner(verbose=False)
 
@@ -288,7 +288,7 @@ def run_quick_tests():
 
 def run_performance_tests():
     """Run performance-related tests."""
-    print("⚡ Running performance tests...")
+    print(" Running performance tests...")
 
     runner = ECGTestRunner(verbose=True)
 

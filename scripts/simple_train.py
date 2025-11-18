@@ -15,7 +15,7 @@ def print_with_time(message):
 
 def train_stage0():
     """Simple training for Stage 0 model."""
-    print_with_time("🚀 Starting Stage 0 Training...")
+    print_with_time(" Starting Stage 0 Training...")
 
     # Configuration
     config = {
@@ -54,9 +54,9 @@ def train_stage0():
         from engines.stage_trainer import create_trainer
 
         # Create dataset
-        print_with_time("📊 Creating dataset...")
+        print_with_time(" Creating dataset...")
         dataset = Stage0Dataset(config, mode="train")
-        print_with_time(f"✅ Loaded {len(dataset)} training samples")
+        print_with_time(f"[OK] Loaded {len(dataset)} training samples")
 
         # Create data loader
         train_loader = DataLoader(
@@ -67,13 +67,13 @@ def train_stage0():
         )
 
         # Create model
-        print_with_time("🧠 Creating model...")
+        print_with_time(" Creating model...")
         model = Stage0Net(config)
         total_params = sum(p.numel() for p in model.parameters())
-        print_with_time(f"✅ Model created with {total_params:,} parameters")
+        print_with_time(f"[OK] Model created with {total_params:,} parameters")
 
         # Create trainer
-        print_with_time("🏃‍♂️ Setting up trainer...")
+        print_with_time(" Setting up trainer...")
         trainer = create_trainer(
             stage='stage0',
             model=model,
@@ -83,18 +83,18 @@ def train_stage0():
         )
 
         # Start training
-        print_with_time("🎯 Starting training...")
+        print_with_time(" Starting training...")
         trainer.train()
 
-        print_with_time("🎉 Stage 0 training completed!")
+        print_with_time(" Stage 0 training completed!")
         return True
 
     except ImportError as e:
-        print_with_time(f"❌ Import error: {e}")
+        print_with_time(f" Import error: {e}")
         print_with_time("Please install required packages: pip install -r requirements_minimal.txt")
         return False
     except Exception as e:
-        print_with_time(f"❌ Training failed: {e}")
+        print_with_time(f" Training failed: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -102,7 +102,7 @@ def train_stage0():
 
 def train_stage1():
     """Simple training for Stage 1 model."""
-    print_with_time("🚀 Starting Stage 1 Training...")
+    print_with_time(" Starting Stage 1 Training...")
 
     config = {
         'COMPETITION': {
@@ -139,9 +139,9 @@ def train_stage1():
         from engines.stage_trainer import create_trainer
 
         # Create dataset
-        print_with_time("📊 Creating dataset...")
+        print_with_time(" Creating dataset...")
         dataset = Stage1Dataset(config, mode="train")
-        print_with_time(f"✅ Loaded {len(dataset)} training samples")
+        print_with_time(f"[OK] Loaded {len(dataset)} training samples")
 
         # Create data loader
         train_loader = DataLoader(
@@ -152,13 +152,13 @@ def train_stage1():
         )
 
         # Create model
-        print_with_time("🧠 Creating model...")
+        print_with_time(" Creating model...")
         model = Stage1Net(config)
         total_params = sum(p.numel() for p in model.parameters())
-        print_with_time(f"✅ Model created with {total_params:,} parameters")
+        print_with_time(f"[OK] Model created with {total_params:,} parameters")
 
         # Create trainer
-        print_with_time("🏃‍♂️ Setting up trainer...")
+        print_with_time(" Setting up trainer...")
         trainer = create_trainer(
             stage='stage1',
             model=model,
@@ -168,20 +168,20 @@ def train_stage1():
         )
 
         # Start training
-        print_with_time("🎯 Starting training...")
+        print_with_time(" Starting training...")
         trainer.train()
 
-        print_with_time("🎉 Stage 1 training completed!")
+        print_with_time(" Stage 1 training completed!")
         return True
 
     except Exception as e:
-        print_with_time(f"❌ Training failed: {e}")
+        print_with_time(f" Training failed: {e}")
         return False
 
 
 def train_stage2():
     """Simple training for Stage 2 model."""
-    print_with_time("🚀 Starting Stage 2 Training...")
+    print_with_time(" Starting Stage 2 Training...")
 
     config = {
         'COMPETITION': {
@@ -212,9 +212,9 @@ def train_stage2():
         from engines.stage_trainer import create_trainer
 
         # Create dataset
-        print_with_time("📊 Creating dataset...")
+        print_with_time(" Creating dataset...")
         dataset = Stage2Dataset(config, mode="train")
-        print_with_time(f"✅ Loaded {len(dataset)} training samples")
+        print_with_time(f"[OK] Loaded {len(dataset)} training samples")
 
         # Create data loader
         train_loader = DataLoader(
@@ -225,13 +225,13 @@ def train_stage2():
         )
 
         # Create model
-        print_with_time("🧠 Creating model...")
+        print_with_time(" Creating model...")
         model = Stage2Net(config)
         total_params = sum(p.numel() for p in model.parameters())
-        print_with_time(f"✅ Model created with {total_params:,} parameters")
+        print_with_time(f"[OK] Model created with {total_params:,} parameters")
 
         # Create trainer
-        print_with_time("🏃‍♂️ Setting up trainer...")
+        print_with_time(" Setting up trainer...")
         trainer = create_trainer(
             stage='stage2',
             model=model,
@@ -241,34 +241,34 @@ def train_stage2():
         )
 
         # Start training
-        print_with_time("🎯 Starting training...")
+        print_with_time(" Starting training...")
         trainer.train()
 
-        print_with_time("🎉 Stage 2 training completed!")
+        print_with_time(" Stage 2 training completed!")
         return True
 
     except Exception as e:
-        print_with_time(f"❌ Training failed: {e}")
+        print_with_time(f" Training failed: {e}")
         return False
 
 
 def main():
     """Main function."""
-    print("🔥 ECG Digitization Simple Training")
+    print(" ECG Digitization Simple Training")
     print("=" * 50)
 
     # Check CUDA availability
     if torch.cuda.is_available():
-        print(f"✅ CUDA available: {torch.cuda.get_device_name()}")
+        print(f"[OK] CUDA available: {torch.cuda.get_device_name()}")
     else:
-        print("⚠️  CUDA not available, using CPU (training will be slow)")
+        print("  CUDA not available, using CPU (training will be slow)")
 
     # Check data
     data_path = "../ecg_data/physionet-ecg-image-digitization"
     if os.path.exists(data_path):
-        print(f"✅ Data directory found: {data_path}")
+        print(f"[OK] Data directory found: {data_path}")
     else:
-        print(f"❌ Data directory not found: {data_path}")
+        print(f" Data directory not found: {data_path}")
         print("Please make sure your ecg_data directory is in the correct location")
         return
 
@@ -290,18 +290,18 @@ def main():
     elif choice == '3':
         success = train_stage2()
     else:
-        print("❌ Invalid choice")
+        print(" Invalid choice")
         return
 
     if success:
-        print("\n🎉 Training completed successfully!")
-        print("📁 Checkpoints saved in ./outputs/")
+        print("\n Training completed successfully!")
+        print(" Checkpoints saved in ./outputs/")
         print("\nNext steps:")
         print("1. Install missing dependencies: pip install -r requirements_minimal.txt")
         print("2. Run with more epochs for better results")
         print("3. Use the trained models for inference")
     else:
-        print("\n❌ Training failed!")
+        print("\n Training failed!")
         print("Please check the error messages above.")
 
 

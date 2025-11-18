@@ -16,7 +16,7 @@ from engines.stage_trainer import create_trainer
 
 def quick_train_stage0():
     """Quick training for Stage 0 model."""
-    print("🚀 Starting Stage 0 Training...")
+    print(" Starting Stage 0 Training...")
 
     # Configuration
     config = {
@@ -60,9 +60,9 @@ def quick_train_stage0():
 
     try:
         # Create dataset
-        print("📊 Creating dataset...")
+        print(" Creating dataset...")
         dataset = Stage0Dataset(config, mode="train")
-        print(f"✅ Loaded {len(dataset)} training samples")
+        print(f"[OK] Loaded {len(dataset)} training samples")
 
         # Create data loader
         train_loader = DataLoader(
@@ -74,13 +74,13 @@ def quick_train_stage0():
         )
 
         # Create model
-        print("🧠 Creating model...")
+        print(" Creating model...")
         model = Stage0Net(config)
         total_params = sum(p.numel() for p in model.parameters())
-        print(f"✅ Model created with {total_params:,} parameters")
+        print(f"[OK] Model created with {total_params:,} parameters")
 
         # Create trainer
-        print("🏃‍♂️ Setting up trainer...")
+        print(" Setting up trainer...")
         trainer = create_trainer(
             stage='stage0',
             model=model,
@@ -90,14 +90,14 @@ def quick_train_stage0():
         )
 
         # Start training
-        print("🎯 Starting training...")
+        print(" Starting training...")
         trainer.train()
 
-        print("🎉 Stage 0 training completed!")
+        print(" Stage 0 training completed!")
         return True
 
     except Exception as e:
-        print(f"❌ Training failed: {e}")
+        print(f" Training failed: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -105,7 +105,7 @@ def quick_train_stage0():
 
 def quick_train_stage1():
     """Quick training for Stage 1 model."""
-    print("🚀 Starting Stage 1 Training...")
+    print(" Starting Stage 1 Training...")
 
     config = {
         'COMPETITION': {
@@ -148,9 +148,9 @@ def quick_train_stage1():
 
     try:
         # Create dataset
-        print("📊 Creating dataset...")
+        print(" Creating dataset...")
         dataset = Stage1Dataset(config, mode="train")
-        print(f"✅ Loaded {len(dataset)} training samples")
+        print(f"[OK] Loaded {len(dataset)} training samples")
 
         # Create data loader
         train_loader = DataLoader(
@@ -162,13 +162,13 @@ def quick_train_stage1():
         )
 
         # Create model
-        print("🧠 Creating model...")
+        print(" Creating model...")
         model = Stage1Net(config)
         total_params = sum(p.numel() for p in model.parameters())
-        print(f"✅ Model created with {total_params:,} parameters")
+        print(f"[OK] Model created with {total_params:,} parameters")
 
         # Create trainer
-        print("🏃‍♂️ Setting up trainer...")
+        print(" Setting up trainer...")
         trainer = create_trainer(
             stage='stage1',
             model=model,
@@ -178,14 +178,14 @@ def quick_train_stage1():
         )
 
         # Start training
-        print("🎯 Starting training...")
+        print(" Starting training...")
         trainer.train()
 
-        print("🎉 Stage 1 training completed!")
+        print(" Stage 1 training completed!")
         return True
 
     except Exception as e:
-        print(f"❌ Training failed: {e}")
+        print(f" Training failed: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -193,7 +193,7 @@ def quick_train_stage1():
 
 def quick_train_stage2():
     """Quick training for Stage 2 model."""
-    print("🚀 Starting Stage 2 Training...")
+    print(" Starting Stage 2 Training...")
 
     config = {
         'COMPETITION': {
@@ -229,9 +229,9 @@ def quick_train_stage2():
 
     try:
         # Create dataset
-        print("📊 Creating dataset...")
+        print(" Creating dataset...")
         dataset = Stage2Dataset(config, mode="train")
-        print(f"✅ Loaded {len(dataset)} training samples")
+        print(f"[OK] Loaded {len(dataset)} training samples")
 
         # Create data loader
         train_loader = DataLoader(
@@ -243,13 +243,13 @@ def quick_train_stage2():
         )
 
         # Create model
-        print("🧠 Creating model...")
+        print(" Creating model...")
         model = Stage2Net(config)
         total_params = sum(p.numel() for p in model.parameters())
-        print(f"✅ Model created with {total_params:,} parameters")
+        print(f"[OK] Model created with {total_params:,} parameters")
 
         # Create trainer
-        print("🏃‍♂️ Setting up trainer...")
+        print(" Setting up trainer...")
         trainer = create_trainer(
             stage='stage2',
             model=model,
@@ -259,14 +259,14 @@ def quick_train_stage2():
         )
 
         # Start training
-        print("🎯 Starting training...")
+        print(" Starting training...")
         trainer.train()
 
-        print("🎉 Stage 2 training completed!")
+        print(" Stage 2 training completed!")
         return True
 
     except Exception as e:
-        print(f"❌ Training failed: {e}")
+        print(f" Training failed: {e}")
         import traceback
         traceback.print_exc()
         return False
@@ -274,21 +274,21 @@ def quick_train_stage2():
 
 def main():
     """Main function."""
-    print("🔥 ECG Digitization Quick Training")
+    print(" ECG Digitization Quick Training")
     print("=" * 50)
 
     # Check CUDA availability
     if torch.cuda.is_available():
-        print(f"✅ CUDA available: {torch.cuda.get_device_name()}")
+        print(f"[OK] CUDA available: {torch.cuda.get_device_name()}")
     else:
-        print("⚠️  CUDA not available, using CPU (training will be slow)")
+        print("  CUDA not available, using CPU (training will be slow)")
 
     # Check data
     data_path = "../ecg_data/physionet-ecg-image-digitization"
     if os.path.exists(data_path):
-        print(f"✅ Data directory found: {data_path}")
+        print(f"[OK] Data directory found: {data_path}")
     else:
-        print(f"❌ Data directory not found: {data_path}")
+        print(f" Data directory not found: {data_path}")
         return
 
     print("\nWhich stage do you want to train?")
@@ -306,20 +306,20 @@ def main():
     elif choice == '3':
         success = quick_train_stage2()
     elif choice == '4':
-        print("🧪 Testing all stages...")
+        print(" Testing all stages...")
         success1 = quick_train_stage0()
         success2 = quick_train_stage1()
         success3 = quick_train_stage2()
         success = success1 and success2 and success3
     else:
-        print("❌ Invalid choice")
+        print(" Invalid choice")
         return
 
     if success:
-        print("\n🎉 Training completed successfully!")
-        print("📁 Checkpoints saved in ./outputs/")
+        print("\n Training completed successfully!")
+        print(" Checkpoints saved in ./outputs/")
     else:
-        print("\n❌ Training failed!")
+        print("\n Training failed!")
 
 
 if __name__ == "__main__":

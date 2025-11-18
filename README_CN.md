@@ -115,8 +115,14 @@ python scripts/test_stages.py
 
 ### 3. 推理
 ```bash
-# 使用训练好的模型运行推理
-python inference.py --checkpoint outputs/model.pth --image ecg.jpg
+# 使用训练好的模型运行推理（推荐）
+python main.py inference --config configs/inference_config.yaml --input ecg.jpg
+
+# 或使用简化版本
+python inference.py --checkpoint outputs/stage0_final.pth --image ecg.jpg
+
+# 使用分阶段推理脚本
+python scripts/main_simple.py inference --config configs/inference_config.yaml --input ecg.jpg
 ```
 
 ### 4. 消融研究
