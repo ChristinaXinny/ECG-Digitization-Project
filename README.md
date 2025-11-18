@@ -1,4 +1,4 @@
-# ECG Digitization Project
+# ECG Digitization Project / ECG 数字化项目
 
 A comprehensive, production-ready implementation of ECG image to digital signal conversion using multi-stage deep learning.
 
@@ -41,13 +41,15 @@ ECG-Digitization-Project/
 │       └── README.md                 # Test documentation
 │
 ├── 📁 Documentation
-│   ├── README.md                     # Main documentation
+│   ├── README.md                     # Main documentation (English)
+│   ├── README_CN.md                  # Main documentation (Chinese)
 │   ├── PROJECT_SUMMARY.md            # Complete project overview
 │   ├── ABLATION_GUIDE.md             # Ablation study guide
 │   └── docs/                         # Additional documentation
 │       ├── TRAINING_GUIDE.md         # Training guide
 │       ├── QUICK_START.md            # Quick start guide
-│       └── PROJECT_STATUS.md         # Project status
+│       ├── PROJECT_STATUS.md         # Project status
+│       └── GITIGNORE_GUIDE.md         # Git ignore guide
 │
 └── 📁 Output & Build
     ├── outputs/                      # Training outputs and checkpoints
@@ -91,6 +93,14 @@ python ablation.py
 python ablation_studies/run_ablation_studies.py --studies backbone loss
 ```
 
+## 📚 Documentation (文档)
+
+### Language Selection (语言选择)
+- **[English Version](README.md)** - For international users
+- **[中文版本](README_CN.md)** - 面向中文用户
+
+Both versions contain the same information and are kept synchronized.
+
 ## 🛠️ Installation
 
 ### Prerequisites
@@ -103,7 +113,7 @@ python ablation_studies/run_ablation_studies.py --studies backbone loss
 
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/ChristinaXinny/ECG-Digitization-Project
    cd ECG-Digitization-Project
    ```
 
@@ -370,6 +380,12 @@ python main.py train --config configs/base.yaml --debug --verbose
 - Use mixed precision training
 - Enable gradient accumulation
 - Use appropriate batch sizes
+
+### visualization
+- Complete ECGVisualizer class in utils/visualization.py
+- Demo script in scripts/visualization_demo.py
+- Dependencies: matplotlib, plotly, opencv-python, seaborn, scikit-image
+- Professional output: High-DPI figures with proper styling and color schemes
 
 ## 📄 License
 

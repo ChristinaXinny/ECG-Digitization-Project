@@ -214,7 +214,7 @@ optimal_augmentation = {
 1. **继承基础类**:
 ```python
 from ablation_studies.base_ablation import BaseAblationStudy
-
+git ls-files | findstr ".pth"
 class CustomAblation(BaseAblationStudy):
     def __init__(self, **kwargs):
         super().__init__("custom", **kwargs)
