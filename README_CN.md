@@ -101,8 +101,16 @@ python tests/run_simple_tests.py
 # 从项目根目录开始训练
 python train.py
 
-# 或直接指定训练脚本
-python scripts/train_stage0.py
+# 分阶段训练 - 推荐
+python scripts/train_stage0.py    # 阶段0: 图像标准化和关键点检测
+python scripts/train_stage1.py    # 阶段1: 图像矫正和网格检测
+python scripts/train_stage2.py    # 阶段2: 信号数字化和提取
+
+# 全阶段训练
+python scripts/train_all_stages.py
+
+# 测试训练脚本
+python scripts/test_stages.py
 ```
 
 ### 3. 推理
@@ -390,6 +398,7 @@ flake8 .
 ## 📄 文档
 
 - [项目概述](PROJECT_SUMMARY.md) - 完整的项目介绍
+- [分阶段训练指南](docs/TRAINING_STAGES_GUIDE.md) - Stage 0/1/2 训练脚本使用说明
 - [消融研究指南](ABLATION_GUIDE.md) - 详细的消融研究说明
 - [项目结构指南](PROJECT_STRUCTURE.md) - 文件组织说明
 - [高级训练功能](docs/TRAINING_FEATURES.md) - 学习率调度、混合精度等高级功能
