@@ -392,6 +392,7 @@ flake8 .
 - [项目概述](PROJECT_SUMMARY.md) - 完整的项目介绍
 - [消融研究指南](ABLATION_GUIDE.md) - 详细的消融研究说明
 - [项目结构指南](PROJECT_STRUCTURE.md) - 文件组织说明
+- [高级训练功能](docs/TRAINING_FEATURES.md) - 学习率调度、混合精度等高级功能
 - [Git忽略指南](docs/GITIGNORE_GUIDE.md) - .gitignore 使用指南
 
 ## 🐛 故障排除

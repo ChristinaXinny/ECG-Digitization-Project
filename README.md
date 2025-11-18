@@ -101,6 +101,12 @@ python ablation_studies/run_ablation_studies.py --studies backbone loss
 
 Both versions contain the same information and are kept synchronized.
 
+### Available Documentation
+- [Project Summary](PROJECT_SUMMARY.md) - Complete project introduction
+- [Ablation Study Guide](ABLATION_GUIDE.md) - Detailed ablation study instructions
+- [Project Structure Guide](PROJECT_STRUCTURE.md) - File organization guide
+- [Advanced Training Features](docs/TRAINING_FEATURES.md) - Learning rate scheduling, mixed precision, and more
+
 ## 🛠️ Installation
 
 ### Prerequisites
