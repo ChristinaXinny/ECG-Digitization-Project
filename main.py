@@ -163,7 +163,8 @@ def main():
 
     try:
         if args.command == "train":
-            train_main(args, config, logger)
+            # train.py main() takes no arguments, so call it without args
+            train_main()
 
         elif args.command == "inference":
             # Handle inference properly by formatting arguments for load_model.py

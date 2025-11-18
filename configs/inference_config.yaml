@@ -17,11 +17,18 @@ PIPELINE:
   BATCH_PROCESSING: True
 
 # Model weights
+# PATHS:
+#   STAGE_WEIGHTS:
+#     STAGE0: "stage0-last.checkpoint.pth"
+#     STAGE1: "stage1-last.checkpoint.pth"
+#     STAGE2: "stage2-00005810.checkpoint.pth"
+
 PATHS:
   STAGE_WEIGHTS:
-    STAGE0: "stage0-last.checkpoint.pth"
-    STAGE1: "stage1-last.checkpoint.pth"
-    STAGE2: "stage2-00005810.checkpoint.pth"
+    STAGE0: "outputs/stage0_checkpoints/stage0_best.pth"
+    STAGE1: "outputs/stage1_checkpoints/stage1_best.pth"
+    STAGE2: "outputs/stage2_checkpoints/stage2_best.pth"
+# ECG-Digitization-Project\outputs\stage0_checkpoints\stage0_best.pth
 
 # Inference settings
 INFERENCE:

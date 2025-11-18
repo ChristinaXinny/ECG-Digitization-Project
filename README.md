@@ -166,24 +166,24 @@ python main.py train --config configs/stage2_config.yaml --mode stage2
 
 **Resume training**:
 ```bash
-python main.py train --config configs/stage0_config.yaml --resume outputs/checkpoints/stage0/latest.pth
+python main.py train --config configs/stage0_config.yaml --resume outputs/stage0_checkpoints/stage0_best.pth 
 ```
 
 ### 2. Inference
 
 **Single image inference**:
 ```bash
-python main.py inference --config configs/inference_config.yaml --input path/to/ecg.png
+python main.py inference --config configs/inference_config.yaml --input data/ecg_data_simple/test/1053922973.png
 ```
 
 **Batch inference**:
 ```bash
-python main.py inference --config configs/inference_config.yaml --input /path/to/images/ --output /path/to/results/
+python main.py inference --config configs/inference_config.yaml --input data/ecg_data_simple/test/1053922973.png --output outputs/inference/result_batch/
 ```
 
 **Complete pipeline**:
 ```bash
-python main.py inference --config configs/inference_config.yaml --mode pipeline --input /path/to/images/
+python main.py inference --config configs/inference_config.yaml --mode pipeline --input data/ecg_data_simple/test/1053922973.png
 ```
 
 ### 3. Evaluation

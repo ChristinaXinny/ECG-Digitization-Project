@@ -29,7 +29,15 @@ class ECGModelLoader:
             device: Device to run inference on ('cpu' or 'cuda')
         """
         self.checkpoint_path = checkpoint_path
+
+        # Handle device detection with fallback to CPU
+        if device == 'cuda' and not torch.cuda.is_available():
+            print("CUDA not available, falling back to CPU")
+            device = 'cpu'
+
         self.device = torch.device(device)
+        print(f"Using device: {self.device}")
+
         self.model = None
         self.config = None
 

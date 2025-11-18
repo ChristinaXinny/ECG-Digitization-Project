@@ -75,9 +75,19 @@ DATA:
     ZERO_MV: [703.5, 987.5, 1271.5, 1531.5]
 
   LEAD_LABELS:
-    'None': 0, 'I': 1, 'aVR': 2, 'V1': 3, 'V4': 4,
-    'II': 5, 'aVL': 6, 'V2': 7, 'V5': 8,
-    'III': 9, 'aVF': 10, 'V3': 11, 'V6': 12,
+    'None': 0
+    'I': 1
+    'aVR': 2
+    'V1': 3
+    'V4': 4
+    'II': 5
+    'aVL': 6
+    'V2': 7
+    'V5': 8
+    'III': 9
+    'aVF': 10
+    'V3': 11
+    'V6': 12
     'II-rhythm': 13
 
 # Model Configuration
