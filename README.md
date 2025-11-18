@@ -381,12 +381,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Medical imaging research community
 - PyTorch and deep learning ecosystem
 
-## 📞 Contact
-
-For questions and support:
-- Create an issue in the repository
-- Email: [your-email@example.com]
-
 ---
 
 **Note**: This is a research project. For clinical use, ensure proper validation and regulatory compliance.
