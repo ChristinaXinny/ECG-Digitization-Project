@@ -103,7 +103,7 @@ python ablation_studies/run_ablation_studies.py --studies backbone loss
 
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/ChristinaXinny/ECG-Digitization-Project
    cd ECG-Digitization-Project
    ```
 
