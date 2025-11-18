@@ -81,7 +81,8 @@ python scripts/train_stage0.py
 ### 3. Inference
 ```bash
 # Run inference with trained model
-python inference.py --checkpoint path/to/model.pth --image path/to/ecg.jpg
+python inference.py --checkpoint path/to/model.pth --image path/to/ecg.png
+eg: python inference.py --checkpoint outputs/stage0_checkpoints/stage0_best.pth --image data/ecg_data_simple/test/1053922973.png
 ```
 
 ### 4. Ablation Studies

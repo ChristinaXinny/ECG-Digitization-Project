@@ -11,7 +11,7 @@ import os
 from pathlib import Path
 
 # Add project root to Python path
-project_root = Path(__file__).parent
+project_root = Path(__file__).parent.parent  # Go up one level from scripts/ to project root
 sys.path.insert(0, str(project_root))
 
 from utils.config_loader import load_config
@@ -168,12 +168,14 @@ def main():
             inference_main(args, config, logger)
 
         elif args.command == "evaluate":
-            from evaluation import main as evaluate_main
-            evaluate_main(args, config, logger)
+            logger.warning("Evaluate functionality not yet implemented")
+            # from evaluation import main as evaluate_main
+            # evaluate_main(args, config, logger)
 
         elif args.command == "setup":
-            from scripts.setup_environment import setup_environment_main
-            setup_environment_main(args, config, logger)
+            logger.warning("Setup functionality not yet implemented")
+            # from scripts.setup_environment import setup_environment_main
+            # setup_environment_main(args, config, logger)
 
         else:
             raise ValueError(f"Unknown command: {args.command}")

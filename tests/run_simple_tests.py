@@ -278,11 +278,10 @@ def main():
     if passed == total:
         print("\n[SUCCESS] All tests passed!")
         print("\n[OK] ECG Digitization Project is ready to use!")
-        print("\nNext steps:")
-        print("1. Prepare your ECG data in ecg_data/ directory")
-        print("2. Run training: python train_stage0.py")
-        print("3. Run ablation studies: python ablation_studies/run_ablation_studies.py")
-    else:
+    #     print("\nNext steps:")
+    #     print("1. Prepare your ECG data in ecg_data/ directory")
+    #     print("2. Run ablation studies: python ablation_studies/run_ablation_studies.py")
+    # else:
         print(f"\n[WARNING] {total - passed} test(s) failed. Please check the errors above.")
 
     return passed == total
