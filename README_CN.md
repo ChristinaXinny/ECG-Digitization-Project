@@ -243,6 +243,78 @@ python ablation_studies/run_ablation_studies.py \
 - 📋 详细分析报告
 - 🔬 科学证据支持
 
+## 📊 数据集与数据配置
+
+### 数据下载来源
+
+**完整数据下载链接：**
+
+1. **Kaggle 官方下载**:
+   - 链接：https://www.kaggle.com/competitions/physionet-ecg-image-digitization/data
+   - 注意：需要参加比赛才可下载
+
+2. **百度网盘下载**:
+   - 链接：[请在此处填入百度网盘链接]
+   - 提取码：[请在此处填入提取码]
+   - 说明：比赛官方下载的数据备份
+
+### 数据目录结构
+
+**下载的数据需要放置在以下结构中：**
+
+训练数据应按以下结构组织：
+```
+ECG-Digitization-Project/
+└── data/                        # 数据根目录
+    ├── ecg_data_simple/         # 简单测试数据（用于快速验证）
+    │   ├── train/
+    │   │   ├── images/         # ECG图像文件
+    │   │   └── series/         # 对应的时间序列数据
+    │   └── test/
+    │       ├── images/         # 测试图像
+    │       └── series/         # 测试时间序列
+    │
+    ├── train/                   # 完整训练数据（从下载的数据集）
+    │   ├── images/              # ECG图像文件 (.png, .jpg)
+    │   ├── series/              # 对应的CSV时间序列数据
+    │   └── annotations/         # 标注文件（可选）
+    │
+    ├── val/                     # 验证数据
+    │   ├── images/
+    │   └── series/
+    │
+    └── test/                    # 测试数据（从下载的数据集）
+        ├── images/
+        └── series/
+```
+
+**数据放置说明：**
+1. 解压下载的比赛数据集
+2. 将文件复制/解压到项目根目录的 `data/` 目录中
+3. 确保目录结构与上述格式匹配
+4. `ecg_data_simple/` 文件夹已存在，包含测试样本
+
+### 快速测试数据
+
+**简单测试数据路径**: `ECG-Digitization-Project\data\ecg_data_simple`
+
+此目录包含少量测试样本，用于：
+- 快速验证环境安装
+- 测试推理功能
+- 调试模型性能
+
+**示例测试命令**:
+```bash
+# 使用简单测试数据进行推理
+python main.py inference --config configs/inference_config.yaml --input data/ecg_data_simple/test/1053922973.png
+```
+
+### 数据格式要求
+
+- **图像**: PNG、JPG、JPEG格式，RGB色彩
+- **序列**: CSV格式，包含时间和电压值
+- **文件命名**: 建议使用一致的命名规则（如ID编号）
+
 ## 📊 模型架构
 
 ### Stage0Net 模型特点

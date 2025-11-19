@@ -10,11 +10,8 @@ from tqdm import tqdm
 import json
 from pathlib import Path
 
-from ..models import Stage0Net, Stage1Net, Stage2Net
-from ..utils.metrics import (
-    SegmentationMetrics, DetectionMetrics, ClassificationMetrics,
-    MetricsCalculator
-)
+from models import Stage0Net, Stage1Net, Stage2Net
+from utils.metrics import SegmentationMetrics, DetectionMetrics, ClassificationMetrics
 
 
 class ECGValidator:
@@ -53,22 +50,22 @@ class ECGValidator:
 
         logger.info(f"Initialized validator for {stage} on device: {self.device}")
 
-    def _setup_metrics(self) -> MetricsCalculator:
+    def _setup_metrics(self):
         """Setup metrics calculator based on stage."""
         if self.stage == 'stage0':
-            return MetricsCalculator(
-                segmentation_metrics=SegmentationMetrics(num_classes=14),
-                classification_metrics=ClassificationMetrics(num_classes=8)
-            )
+            return {
+                'segmentation': SegmentationMetrics(num_classes=14),
+                'classification': ClassificationMetrics(num_classes=8)
+            }
         elif self.stage == 'stage1':
-            return MetricsCalculator(
-                segmentation_metrics=SegmentationMetrics(num_classes=58),  # Max grid lines
-                detection_metrics=DetectionMetrics()
-            )
+            return {
+                'segmentation': SegmentationMetrics(num_classes=58),  # Max grid lines
+                'detection': DetectionMetrics()
+            }
         elif self.stage == 'stage2':
-            return MetricsCalculator(
-                detection_metrics=DetectionMetrics()
-            )
+            return {
+                'detection': DetectionMetrics()
+            }
         else:
             raise ValueError(f"Invalid stage: {self.stage}")
 

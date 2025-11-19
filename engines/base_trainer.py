@@ -11,9 +11,8 @@ import time
 from loguru import logger
 import numpy as np
 
-from ..utils.logger import ECGLogger
-from ..utils.checkpoint import CheckpointManager
-from ..utils.metrics import MetricsCalculator
+from utils.logger import setup_logger
+from utils.metrics import SegmentationMetrics, DetectionMetrics, ClassificationMetrics
 
 
 class BaseTrainer:
@@ -178,31 +177,36 @@ class BaseTrainer:
         # This should be implemented by subclasses
         return nn.MSELoss()
 
-    def _setup_logger(self) -> ECGLogger:
+    def _setup_logger(self):
         """Setup logger."""
         log_config = self.config.get('LOG', {})
-        return ECGLogger(
-            level=log_config.get('LEVEL', 'INFO'),
-            log_dir=log_config.get('LOG_DIR', 'outputs/logs'),
-            experiment_name=self.config.get('EXPERIMENT', {}).get('NAME', 'experiment'),
-            tensorboard=log_config.get('TENSORBOARD', True),
-            wandb_config=log_config.get('WANDB', {})
+        log_dir = log_config.get('LOG_DIR', 'outputs/logs')
+        experiment_name = self.config.get('EXPERIMENT', {}).get('NAME', 'experiment')
+
+        return setup_logger(
+            log_dir=log_dir,
+            log_level=log_config.get('LEVEL', 'INFO'),
+            experiment_name=experiment_name
         )
 
-    def _setup_checkpoint_manager(self) -> CheckpointManager:
+    def _setup_checkpoint_manager(self):
         """Setup checkpoint manager."""
         checkpoint_config = self.config.get('CHECKPOINT', {})
-        return CheckpointManager(
-            save_dir=checkpoint_config.get('SAVE_DIR', 'outputs/checkpoints'),
-            save_top_k=checkpoint_config.get('SAVE_TOP_K', 3),
-            save_last=checkpoint_config.get('SAVE_LAST', True),
-            monitor=checkpoint_config.get('MONITOR', 'val_loss'),
-            mode=checkpoint_config.get('MODE', 'min')
-        )
+        # Simple checkpoint implementation
+        return {
+            'save_dir': checkpoint_config.get('SAVE_DIR', 'outputs/checkpoints'),
+            'save_freq': checkpoint_config.get('SAVE_FREQ', 1000),
+            'keep_best': checkpoint_config.get('KEEP_BEST', True)
+        }
 
-    def _setup_metrics(self) -> MetricsCalculator:
+    def _setup_metrics(self):
         """Setup metrics calculator."""
-        return MetricsCalculator()
+        # Return a simple metrics dictionary
+        return {
+            'segmentation': SegmentationMetrics(num_classes=10),
+            'detection': DetectionMetrics(),
+            'classification': ClassificationMetrics(num_classes=8)
+        }
 
     def train_epoch(self) -> Dict[str, float]:
         """Train for one epoch."""

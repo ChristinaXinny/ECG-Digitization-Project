@@ -17,7 +17,7 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 from data.data_module import ECGDataModule
-from data.datasets import ECGDataset
+from data.dataset import ECGDataset
 from data.transforms import ECGTransforms
 
 

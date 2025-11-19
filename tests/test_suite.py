@@ -27,19 +27,15 @@ if project_root not in sys.path:
 
 # Import project modules
 from data.data_module import ECGDataModule
-from data.datasets import ECGDataset
+from data.dataset import ECGDataset
 from data.transforms import ECGTransforms
 from models import Stage0Net
 from models.heads import (
     DetectionHead, SegmentationHead, RegressionHead, ClassificationHead,
     OrientationClassificationHead, LeadClassificationHead
 )
-from engines.trainer import Trainer
-from engines.inference import InferenceEngine
-from utils.losses import ECGDigitizationLoss
-from utils.metrics import ECGMetrics
-from utils.config import load_config, merge_configs
-from ablation_studies import BaseAblationStudy
+from engines.stage_trainer import Stage0Trainer
+from engines.inference import ECGInferenceEngine
 
 
 class TestConfigLoading(unittest.TestCase):

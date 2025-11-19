@@ -7,8 +7,8 @@ from typing import Dict, List, Optional, Any, Tuple
 from loguru import logger
 
 from .base_trainer import BaseTrainer
-from ..models import Stage0Net, Stage1Net, Stage2Net
-from ..utils.metrics import SegmentationMetrics, DetectionMetrics, ClassificationMetrics
+from models import Stage0Net, Stage1Net, Stage2Net
+from utils.metrics import SegmentationMetrics, DetectionMetrics, ClassificationMetrics
 
 
 class Stage0Trainer(BaseTrainer):

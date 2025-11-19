@@ -17,10 +17,8 @@ project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-from engines.trainer import Trainer
-from engines.inference import InferenceEngine
-from utils.losses import ECGDigitizationLoss
-from utils.metrics import ECGMetrics
+from engines.stage_trainer import Stage0Trainer
+from engines.inference import ECGInferenceEngine
 from data.data_module import ECGDataModule
 from models import Stage0Net
 

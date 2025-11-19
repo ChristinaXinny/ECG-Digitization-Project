@@ -11,10 +11,10 @@ from loguru import logger
 import time
 from tqdm import tqdm
 
-from ..models import Stage0Net, Stage1Net, Stage2Net
-from ..utils.logger import ECGLogger
-from ..data.preprocessing import ECGPreprocessor
-from ..data.transforms import Stage0Transforms, Stage1Transforms, Stage2Transforms
+from models import Stage0Net, Stage1Net, Stage2Net
+from utils.logger import setup_logger
+from data.preprocessing import ECGPreprocessor
+from data.transforms import Stage0Transforms, Stage1Transforms, Stage2Transforms
 
 
 class ECGInferenceEngine:
