@@ -11,7 +11,7 @@ This project converts ECG images through a three-stage deep learning pipeline:
 2. **Stage 1**: Grid detection and image rectification
 3. **Stage 2**: Signal extraction and digitization
 
-**Key Results**: Achieved **14.29 dB SNR** on test data, demonstrating clinically viable signal quality.
+**Key Results**: Achieved **16.12 dB SNR** on test data, demonstrating clinically viable signal quality.
 
 ## 🛠️ Installation 
 
@@ -97,16 +97,10 @@ ECG-Digitization-Project/
 
 ### Data Download Sources
 
-**Complete Dataset Download Links:**
-
-1. **Official Kaggle Download**:
+**Official Kaggle Dataset Download**:
    - Link: https://www.kaggle.com/competitions/physionet-ecg-image-digitization/data
    - Note: Requires competition participation to download
 
-2. **Baidu Cloud Download**:
-   - Link: [Please fill in Baidu Cloud link here]
-   - Extraction Code: [Please fill in extraction code here]
-   - Description: Backup of competition official data
 
 ### Data Directory Structure
 
@@ -192,8 +186,8 @@ Each stage has its own configuration file that inherits from base.yaml:
 
 | Metric | Value | Description |
 | --- | --- | --- |
-| **SNR** | 17.29 dB | Signal-to-noise ratio |
-| **MAE** | 0.023 mV | Mean absolute error |
+| **SNR** | 16.12 dB | Signal-to-noise ratio |
+| **MAE** | 0.065 mV | Mean absolute error |
 | **Inference Time** | ~2s/image | End-to-end processing |
 
 ### Detailed Analysis
