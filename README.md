@@ -152,6 +152,11 @@ data/
 - **Output**: 4-channel pixel segmentation → time series
 - **Purpose**: Extract digital signals from rectified images
 
+**Best Model Weights Download:**
+- Stage 0: [stage0_best.pth](https://huggingface.co/XinnyIris/ECG-Digitization-Project/resolve/main/stage0_best.pth?download=true)
+- Stage 1: [stage1_best.pth](https://huggingface.co/XinnyIris/ECG-Digitization-Project/resolve/main/stage1_best.pth?download=true)  
+- Stage 2: [stage2_best.pth](https://huggingface.co/XinnyIris/ECG-Digitization-Project/resolve/main/stage2_best.pth?download=true)
+
 ## ⚙️ Configuration
 
 The project uses modular configuration for easy experimentation:
